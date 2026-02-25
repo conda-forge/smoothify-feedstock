@@ -148,4 +148,5 @@ Feedstock Maintainers
 =====================
 
 * [@giswqs](https://github.com/giswqs/)
+* [@wrignj08](https://github.com/wrignj08/)
 
