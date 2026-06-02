@@ -1,5 +1,5 @@
 {% set name = "smoothify" %}
-{% set version = "0.2.2" %}
+{% set version = "0.2.3" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/smoothify-{{ version }}.tar.gz
-  sha256: 82926a37e513e04180f3ab97b02214f7e1356063752e2b2ef61d2934f68b6369
+  sha256: 9b65e01867cef4ad568e2383137343dd400a857dc4881cd8938c216a0336f002
 
 build:
   noarch: python
