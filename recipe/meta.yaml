@@ -12,12 +12,13 @@ source:
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   host:
     - python {{ python_min }}
-    - setuptools >=61.0
+    - setuptools >=77
+    - setuptools-scm >=8
     - pip
   run:
     - python >={{ python_min }}
@@ -32,6 +33,12 @@ test:
     - smoothify
   commands:
     - pip check
+    # Guards against setuptools-scm being absent from `host:`, which makes the
+    # build silently record version 0.0.0 in the installed dist-info. This must
+    # check importlib.metadata rather than smoothify.__version__: the latter
+    # reads _version.py, which ships pre-generated in the sdist and so stays
+    # correct even when the build is broken.
+    - python -c "from importlib.metadata import version; assert version('smoothify') == '{{ version }}', version('smoothify')"
   requires:
     - pip
     - python {{ python_min }}
